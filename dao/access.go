@@ -13,6 +13,7 @@ func NewDatabase(user, pwd, network, server string, port int, db string) (*sql.D
 }
 
 func QueryIndexResult(db *sql.DB, sql, filter string) (string, error) {
+	fmt.Printf("##sql %s\n", sql)
 	rows, err := db.Query(sql)
 	if err != nil {
 		return "", err
@@ -23,9 +24,11 @@ func QueryIndexResult(db *sql.DB, sql, filter string) (string, error) {
 		if err != nil {
 			return "", err
 		}
+		fmt.Printf("##row %s\n", s)
+		fmt.Printf("##filter %s\n", filter)
 		if strings.Contains(s, filter) {
 			return s, nil
 		}
 	}
-	return "", errors.New("no match")
+	return "", errors.New("no match rows")
 }
