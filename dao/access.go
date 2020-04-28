@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func NewDatabase(user, pwd, network, server, port, db string) (*sql.DB, error) {
+func NewDatabase(user, pwd, network, server string, port int, db string) (*sql.DB, error) {
 	conn := fmt.Sprintf("%s:%s@%s(%s:%d)/%s",user, pwd, network, server, port, db)
 	return sql.Open("mysql", conn)
 }

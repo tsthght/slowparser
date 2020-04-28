@@ -1,0 +1,22 @@
+# Time: 2020-04-25T19:21:42.31664211+08:00
+# Txn_start_ts: 416235834810303025
+# User: zebra_banma_orde_0f79@10.32.99.236
+# Conn_ID: 635110
+# Query_time: 1.363452487
+# Parse_time: 0.000100986
+# Compile_time: 0.000547688
+# Process_time: 0.002 Wait_time: 2.715 Request_count: 47 Total_keys: 47 Process_keys: 46
+# DB: banma_order
+# Index_names: [bm_waybill_info:idx_rider_id_status_cdate]
+# Is_internal: false
+# Digest: 9ec7c0203e9bfbd488bc86425fa17688b32e868d1bed52caf7208c54754ec9d5
+# Stats: bm_waybill_info:416235833617547847
+# Num_cop_tasks: 47
+# Cop_proc_avg: 4.2553e-05 Cop_proc_p90: 0 Cop_proc_max: 0.001 Cop_proc_addr: 10.27.57.23:20171
+# Cop_wait_avg: 0.057765957 Cop_wait_p90: 0.001 Cop_wait_max: 1.358 Cop_wait_addr: 10.40.142.29:20171
+# Mem_max: 10496
+# Prepared: false
+# Has_more_results: false
+# Succ: true
+# Plan: tidb_decode_plan('7gOQMAkzXzgJMAkwCWJhbm1hX29yZGVyLmJtX3dheWJpbGxfaW5mbzIQAAhkLCB6KwA4Y2l0eV9pZAoxCTE1XzExgl4AEGN0aW1lEXEQOmRlc2OCYwAVngBkDTBkb2Zmc2V0OjAsIGNvdW50OjIwCjIJMzFfMjMFfyAKMwkxM18yMAkBjhR0YWJsZTo65AA0LCBpbmRleDpyaWRlcl8B5ixzdGF0dXMsIGNkYXQVnwQsIAkhEGNhbmNlAQ5sYW5nZTpbNTY1NzI5NiA1MCAyMDIwMDQyNSAwLFIWACBdLCBrZWVwIG8hahQ6ZmFsc2UBnghfMjIFnQhlcShuXwEIdmFsAZwkMSkKNAkxMF8yMQU1WtIAQmgA')
+SELECT         bm_waybill_id,bm_city_id         FROM            bm_waybill_info               use index (idx_rider_id_status_cdate)         WHERE         rider_id=5657296         AND status in          (               50          )          AND cdate_waybill in          (               20200425          )          AND rider_cancel=0 AND valid=1 ORDER BY ctime_waybill DESC,bm_waybill_id DESC LIMIT 0,20;
