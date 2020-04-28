@@ -9,23 +9,24 @@ import (
 	"regexp"
 	"strings"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/pingcap/parser"
 	"github.com/tsthght/slowparser/dao"
 )
 
 type Event struct {
 	IndexNames map[string]interface{}
-	SqlText string
-	Count int
-	IndexName string
-	PlanSql string
+	SqlText    string
+	Count      int
+	IndexName  string
+	PlanSql    string
 }
 
 var (
-	input string
+	input  string
 	output string
 	index  int
-	h bool
+	h      bool
 )
 
 var list = make(map[string]interface{})
@@ -37,7 +38,9 @@ func main() {
 	flag.IntVar(&index, "c", 0, "only show index > 1")
 	flag.BoolVar(&h, "h", false, "this help")
 	flag.Parse()
-	if h {flag.Usage()}
+	if h {
+		flag.Usage()
+	}
 
 	if len(input) == 0 || len(output) == 0 {
 		fmt.Printf("input or output file is empty\n")
@@ -58,13 +61,12 @@ func main() {
 	br := bufio.NewReader(fi)
 
 	evt := Event{make(map[string]interface{}), "", 0, "", ""}
-
 	db, err := dao.NewDatabase(
 		"root",
 		"",
 		"tcp",
 		"127.0.0.1",
-		"3306",
+		"4000",
 		"")
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
@@ -133,7 +135,7 @@ func main() {
 		fmt.Println(err.Error())
 	} else {
 		for i, v := range list {
-			if index > 0 && len(v.(Event).IndexNames) <= 1{
+			if index > 0 && len(v.(Event).IndexNames) <= 1 {
 				continue
 			}
 			var str string
